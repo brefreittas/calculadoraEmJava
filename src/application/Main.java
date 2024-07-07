@@ -15,12 +15,16 @@ public class Main {
 
         System.out.println("Welcome to Brenokas's calculator 1st edition!");
 
+        Calculator calc = new Calculator();
+
         while (answerContinue) {
             System.out.print("1st number: ");
             double first = sc.nextDouble();
+            calc.setFirstNumber(first);
 
             System.out.print("2nd number: ");
             double second = sc.nextDouble();
+            calc.setSecondNumber(second);
 
             System.out.println();
             System.out.println("Choose an operation:");
@@ -37,36 +41,30 @@ public class Main {
 
             switch (operation) {
                 case 1:
-                    System.out.println(Calculator.addiction(first, second));
+                    System.out.printf("%.1f + %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.addiction(first, second));
 
-                    System.out.print("Do you want to continue? (y/n):");
+                    System.out.print("Do you want to continue? (y/n): ");
                     userAnswer = sc.next().charAt(0);
                     if (userAnswer == 'n') { answerContinue = false; }
-
                     break;
 
                 case 2:
-                    System.out.println(Calculator.subtraction(first, second));
-
-                    System.out.print("Do you want to continue? (y/n):");
+                    System.out.printf("%.1f - %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.subtraction(first, second));
+                    System.out.print("Do you want to continue? (y/n): ");
                     userAnswer = sc.next().charAt(0);
                     if (userAnswer == 'n') { answerContinue = false; }
-
                     break;
 
                 case 3:
-                    System.out.println(Calculator.multiplication(first, second));
-
-                    System.out.print("Do you want to continue? (y/n):");
+                    System.out.printf("%.1f x %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.multiplication(first, second));
+                    System.out.print("Do you want to continue? (y/n): ");
                     userAnswer = sc.next().charAt(0);
                     if (userAnswer == 'n') { answerContinue = false; }
-
                     break;
 
                 case 4:
-                    System.out.println(Calculator.division(first, second));
-
-                    System.out.print("Do you want to continue? (y/n):");
+                    System.out.printf("%.1f / %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.division(first, second));
+                    System.out.print("Do you want to continue? (y/n): ");
                     userAnswer = sc.next().charAt(0);
                     if (userAnswer == 'n') { answerContinue = false; }
                     break;
