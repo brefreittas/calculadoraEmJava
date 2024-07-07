@@ -5,8 +5,10 @@ import entities.Calculator;
 import java.util.Locale;
 import java.util.Scanner;
 
+import static entities.Calculator.printResult;
+
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IllegalAccessException {
         Locale.setDefault(Locale.US);
         Scanner sc = new Scanner(System.in);
 
@@ -17,7 +19,7 @@ public class Main {
 
         Calculator calc = new Calculator();
 
-        while (answerContinue) {
+        while (answerContinue){
             System.out.print("1st number: ");
             double first = sc.nextDouble();
             calc.setFirstNumber(first);
@@ -41,38 +43,30 @@ public class Main {
 
             switch (operation) {
                 case 1:
-                    System.out.printf("%.1f + %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.addiction(first, second));
-
-                    System.out.print("Do you want to continue? (y/n): ");
-                    userAnswer = sc.next().charAt(0);
-                    if (userAnswer == 'n') { answerContinue = false; }
+                    printResult(" + ", first, second, Calculator.addiction(first, second));
                     break;
 
                 case 2:
-                    System.out.printf("%.1f - %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.subtraction(first, second));
-                    System.out.print("Do you want to continue? (y/n): ");
-                    userAnswer = sc.next().charAt(0);
-                    if (userAnswer == 'n') { answerContinue = false; }
+                    printResult(" - ", first, second, Calculator.subtraction(first, second));
                     break;
 
                 case 3:
-                    System.out.printf("%.1f x %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.multiplication(first, second));
-                    System.out.print("Do you want to continue? (y/n): ");
-                    userAnswer = sc.next().charAt(0);
-                    if (userAnswer == 'n') { answerContinue = false; }
+                    printResult(" x ", first, second, Calculator.multiplication(first, second));
                     break;
 
                 case 4:
-                    System.out.printf("%.1f / %.1f = %.1f%n", calc.getFirstNumber(), calc.getSecondNumber(), Calculator.division(first, second));
-                    System.out.print("Do you want to continue? (y/n): ");
-                    userAnswer = sc.next().charAt(0);
-                    if (userAnswer == 'n') { answerContinue = false; }
+                    printResult(" / ", first, second, Calculator.division(first, second));
                     break;
+                    // If the user tries to divide by 0 it will give an error,
+                    // but I still don't know how to use try-catch, it will stay like this :)
 
                 default:
-                    answerContinue = false;
-                    break;
+                    System.out.println("Invalid operation. Please try again.");
             }
+
+            System.out.print("Do you want to continue? (y/n): ");
+            userAnswer = sc.next().charAt(0);
+            if (userAnswer == 'n') answerContinue = false;
         }
 
         System.out.println("Thank you!");

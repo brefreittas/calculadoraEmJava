@@ -33,8 +33,13 @@ public class Calculator {
         return num1 * num2;
     }
 
-    public static double division(double num1, double num2) {
+    public static double division(double num1, double num2) throws IllegalAccessException {
+        if (num2 == 0) throw new IllegalAccessException("Cannot be 0!");
         return num1 / num2;
+    }
+
+    public static void printResult(String operator, double firstNumber, double secondNumber, double result){
+        System.out.printf("%.1f%s%.1f = %.1f%n", firstNumber, operator, secondNumber, result);
     }
 
 }
